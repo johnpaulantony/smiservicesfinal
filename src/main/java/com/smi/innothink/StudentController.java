@@ -138,8 +138,6 @@ public class StudentController implements StudentControllerInterface {
 		String studentPassword=RandomPasswordStudent.randomAlphaNumeric(6);
 		student.setStudentPassword(studentPassword);		
 		Student res3 = studentRepository.save(student);
-		String mail=studentRepository.getMail(id3);
-		System.out.println(mail);
 		System.out.println(id3);
 		System.out.println(studentPassword);
 		System.out.println(student.getStudentName());
