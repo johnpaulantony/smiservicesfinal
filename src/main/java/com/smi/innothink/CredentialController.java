@@ -8,8 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,8 +33,7 @@ public class CredentialController {
 	TrainerRepository trainerRepository;
 	@Autowired(required = false)
 	HttpSession session;
-	@Autowired(required = false)
-	JavaMailSender sender;
+	
 	
 	@RequestMapping(value = "/userlogin", method = RequestMethod.POST, produces = "application/json")
 	public  ArrayList<Object> userLogin(@RequestBody UserCredentials userCredentials){
@@ -92,11 +90,7 @@ public class CredentialController {
 	public boolean forgetPassword(@RequestParam String mailId)
 	{
 		String password=studentRepository.getPassword(mailId);
-		SimpleMailMessage message=new SimpleMailMessage();
-		message.setTo(mailId);
-		message.setSubject("SMI trainee, Your Password");
-		message.setText("Hi, Your request for asking the password is success. your password is :  "+password+"");
-		sender.send(message);
+		
 		return true;
 		
 	}
