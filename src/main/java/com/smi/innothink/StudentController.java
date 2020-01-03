@@ -3,8 +3,6 @@ package com.smi.innothink;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,8 +55,7 @@ public class StudentController implements StudentControllerInterface {
 	StatusDetails statusDetails;
 	@Autowired(required = false)
 	StatusDetailsRepository statusDetailsRepository;
-	@Autowired
-	JavaMailSender sender;
+	
 
 	@RequestMapping(value = "/insertstudentstream", method = RequestMethod.POST, produces = "application/json")
 	public boolean insertStudentStream(@RequestBody(required = false) Stream stream) {
@@ -146,13 +143,7 @@ public class StudentController implements StudentControllerInterface {
 		System.out.println(id3);
 		System.out.println(studentPassword);
 		System.out.println(student.getStudentName());
-		SimpleMailMessage message=new SimpleMailMessage();
-		System.out.println(mail);
-		 message.setTo(mail);
-		 message.setSubject("SMI trainee Username and Password");
-		 message.setText("Hello "+student.getStudentName()+"Welcome to SMI Innothink.Your Username:"+id3+
-		 		"and Your Password:"+studentPassword);
-		 sender.send(message);
+		
 		 if(res3.getStudentId().equals(student.getStudentId())) {
 	     return true;
 		 }
