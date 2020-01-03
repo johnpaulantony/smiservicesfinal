@@ -1,8 +1,6 @@
 package com.smi.innothink;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,8 +35,7 @@ public class CourseController implements CourseControllerInterface{
 	TopicRepository topicRepository;
 	@Autowired(required = false)
 	Topic topic;
-	@Autowired(required = false)
-	JavaMailSender sender;
+
 
 	
 	@RequestMapping(value = "/insert", method = RequestMethod.POST, produces = "application/json")
@@ -117,15 +114,7 @@ public class CourseController implements CourseControllerInterface{
 		return topicRepository.findAll();
 	}
 	
-	@RequestMapping(value="/mail",method = RequestMethod.POST, produces = "application/json")
-	public String getAction() {
-		SimpleMailMessage message=new SimpleMailMessage();
-		 message.setTo("dineshkumarv198@gmail.com");
-		 message.setSubject("SMI trainee Username and Password");
-		 message.setText("HelloWelcome to SMI Innothink.Your Username");
-		 sender.send(message);
-		 return "sent";
-	}
+
 	
 	
 	
